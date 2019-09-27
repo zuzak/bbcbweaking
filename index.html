@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+    <meta charset="utf-8" />
+		<title>Index</title>
+    <script src="npmhacks.js"></script>
+    <script src="https://unpkg.com/@zuzak/owo@1.2.0/owo.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+      function shuffleArray(array) { // https://stackoverflow.com/a/12646864/1875784
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }
+      var quotes = []
+      let URL = 'https://files.chippy.ch/bbcbweaking/bbcbweaking-quotes.txt'
+      let genQuote = () => {
+        if (quotes.length === 0) return getQuotes(genQuote)
+        document.getElementById('js-quote').innerHTML = quotes.pop()
+        window.setTimeout(genQuote, 5 * 1000)
+      }
+      let getQuotes = (cb) => {
+        const request = new XMLHttpRequest()
+        request.onreadystatechange = () => {
+          if (request.readyState === XMLHttpRequest.DONE) {
+            let data = request.responseText
+            quotes = data.split('\n')
+            shuffleArray(quotes)
+            if (typeof cb === 'function') cb()
+          }
+        }
+        request.open('GET', URL)
+        request.send()
+      }
+      window.onload = genQuote
+    </script>
+  <style>
+    blockquote::before { content: "\201C" }
+    blockquote::after { content: "\201D" }
+    html, body {
+      margin: 0;
+      padding:0;
+      font-family: sans-serif;
+    }
+    header {
+      margin: 0;
+      text-align: center;
+      color: black;
+      background-color: #e4e4e4;
+      border-width: 0;
+      border-style: solid;
+      border-color: #bb1919;
+      padding-bottom: 0;
+      padding-top: 0.5em;
+     }
+    header {
+      border-bottom-width: 3px;
+    }
+    button {
+      float: right;
+    }
+    footer {
+      border-top: 1px solid darkgray;
+      padding-top: 1em;
+      font-size: 0.8em;
+    }
+    footer a {
+      color: gray;
+    }
+    blockquote {
+      display: block;
+      font-size: 1.2em;
+      margin: 0.2em;
+    }
+    .wrapper {
+      width: 960px;
+      margin: auto;
+    }
+    h2 {
+      margin-top: 2em;
+      margin-bottom: 0em;
+    }
+    h1 {
+      font-size: 1.2em;
+    }
+  </style>
+	</head>
+	<body>
+    <header>
+      <blockquote id="js-quote">@BBCBreaking</blockquote>
+    </header>
+    <div class="wrapper">
+    <main>
+      <h1 id="js-header"><a href="https://twitter.com/BBCBweaking?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="true">@BBCBweaking</a></h1>
+      <h2>What news sources does @BBCBweaking use?</h2>
+      <p>
+        The bot takes its news from the &ldquo;breaking news&rdquo; tickers from the homepages of several renowned news organisations:
+      </p>
+      <ul>
+        <li><a href="https://bbc.co.uk/news">BBC News</a></li>
+        <li><a href="https://bbc.com/news">BBC News (US & Canada)</a></li>
+        <li><a href="https://reuters.com/news">Reuters</a></li>
+        <li><a href="https://uk.reuters.com/news">Reuters UK</a></li>
+        <li><a href="https://www.aljazeera.com">Al Jazeera</a></li>
+      </ul>
+      <h2>Why do some news stories appear twice?</h2>
+      <p>
+        We send a tweet every time a news organisation updates its feed.
+        This is usually because of a new news story, but occasionally ongoing stories have updates.
+        In many breaking news scenarios Reuters will send us a very brief message, and then follow it up with a more detailed one as information becomes available.
+        We tweet every time any headline changes.
+      </p>
+      <p>
+        As we follow multiple news organisations, most major news stories will be reported by more than one newsgatherer.
+        This means that there&rsquo;s usually more than one tweet for any big story.
+      </p>
+      <div id="js-official">
+      <h2>Is this an official account?</h2>
+      <p>
+        No. Nobody from Reuters, the BBC, nor Al Jazeera said this was a good idea.
+        Some journalists from AFP follow us though.
+      </p>
+      <p>
+      The @BBCBweaking profile photo is deliberately markedly different to the <a href="https://twitter.com/BBCBreaking">BBCBreaking</a> one, so hopefully people don&rsquo;t get <em>too</em> confused.
+      </p>
+      </div>
+      <h2>Can I contribute?</h2>
+      <p>
+        Yes. The source code is licenced under the <a href="https://opensource.org/licenses/isc-license.txt">ISC licence</a>.
+        The bot consists of two parts. Newsgathering, parsing, and tweeting takes place via <a href="https://github.com/zuzakistan/civilservant/blob/master/plugins/news.js">zuzakistan/civilservant</a>.
+        The transformation from English prose to OWO text is done via a library, <a href="https://github.com/zuzak/owo">zuzak/owo</a>.
+      </p>
+      <p>Report code of conduct issues to conduct@zuzakistan.com.</p>
+      <p>
+        You can watch a real-time feed of engagements with the bot via IRC on chat.freenode.net ##zuzakistan-feed
+        (<a href="https://kiwiirc.com/nextclient/irc.freenode.net/&#x23;&#x23;zuzakistan-lab">webclient</a>).
+      </p>
+      <p>
+        You can suggest changes without writing code by filling in our <a href="https://docs.google.com/forms/d/e/1FAIpQLScbwTfohsIG_R12-b8TwhOc-Jqhj4mN8z4TbYfvwGj6RXueqQ/viewform">Google Form</a>.
+      </p>
+    </main>
+<!--    <footer>
+      <a href="https://github.com/zuzak/owo">github zuzak/owo</a>
+</footer> -->
+    </div>
+  <script>
+      let button = document.createElement('button')
+      button.innerHTML = 'OWOify this page'
+      button.addEventListener('click', () => {
+        const elements = document.querySelectorAll('h1,h2,p,a')
+        for (i in elements) {
+          let element = elements[i]
+          if (element.innerHTML) {
+            element.innerHTML = owo(element.innerHTML)
+          }
+        }
+        button.style.display = 'none'
+      })
+      document.getElementById('js-header').appendChild(button)
+      let getVerified = () => {
+        const request = new XMLHttpRequest()
+        request.onreadystatechange = () => {
+          if (request.readyState === XMLHttpRequest.DONE) {
+            let data = Number(request.responseText).toLocaleString('en-GB')
+            let p = document.createElement('p')
+            p.innerHTML = `The bot&rsquo;s been followed by ${data} verified accounts so far.`
+            document.getElementById('js-official').appendChild(p)
+          }
+        }
+        request.open('GET', 'https://files.chippy.ch/bbcbweaking/bbcbweaking-verified-count.txt')
+        request.send()
+      }
+      getVerified()
+    </script>
+	</body>
+</html>
+

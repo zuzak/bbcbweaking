@@ -19,7 +19,7 @@
       let genQuote = () => {
         if (quotes.length === 0) return getQuotes(genQuote)
         document.getElementById('js-quote').innerHTML = quotes.pop()
-        window.setTimeout(genQuote, 5 * 1000)
+        window.setTimeout(genQuote, 3 * 1000)
       }
       let getQuotes = (cb) => {
         const request = new XMLHttpRequest()

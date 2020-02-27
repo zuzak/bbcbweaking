@@ -18,8 +18,10 @@
       let URL = 'https://files.chippy.ch/bbcbweaking/bbcbweaking-quotes.txt'
       let genQuote = () => {
         if (quotes.length === 0) return getQuotes(genQuote)
-        document.getElementById('js-quote').innerHTML = quotes.pop()
-        window.setTimeout(genQuote, 3 * 1000)
+        let quote = quotes.pop()
+        document.getElementById('js-quote').innerHTML = quote
+        window.setTimeout(genQuote, (quote.split(' ').length * 100) + 900)
+        console.log((quote.split(' ').length * 100) + 900)
       }
       let getQuotes = (cb) => {
         const request = new XMLHttpRequest()

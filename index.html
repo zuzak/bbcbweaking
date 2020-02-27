@@ -6,7 +6,7 @@
     <title>@BBCBweaking</title>
     <script src="npmhacks.js"></script>
     <script src="https://unpkg.com/@zuzak/owo/owo.js"></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script async src="https://platform.twitter.com/widgets.js"></script>
     <script>
       function shuffleArray(array) { // https://stackoverflow.com/a/12646864/1875784
         for (let i = array.length - 1; i > 0; i--) {
@@ -48,6 +48,7 @@
     }
     header {
       margin: 0;
+      padding: 0;
       text-align: center;
       color: black;
       position: fixed;
@@ -57,10 +58,7 @@
       border-width: 0;
       border-style: solid;
       border-color: #bb1919;
-      padding-bottom: 0;
-      padding-top: 0.5em;
-     }
-    header {
+      overflow: hidden;
       border-bottom-width: 3px;
     }
     button {
@@ -76,15 +74,14 @@
     }
     blockquote {
       display: block;
-      font-size: 5vh;
-      margin-top: 10vh;
-      height: 10vh;
-      overflow: hidden;
+      font-size: 2em;
+      max-height: 2em;
+      margin: 0.4em;
     }
     .wrapper {
       width: 600px;
       margin: auto;
-      margin-top: 25vh;
+      margin-top: 4em;
       margin-bottom: 3em;
     }
     h2 {
@@ -107,8 +104,6 @@
       background-color: #bb1919;
       margin: 0;
       padding: 0.5em 1em;
-      border-bottom-right-radius: 1em;
-      border-bottom-left-radius: 1em;
       color: pink;
     }
     .mid-bar p, .banner {

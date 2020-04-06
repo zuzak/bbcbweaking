@@ -21,9 +21,9 @@
         let quote = quotes.pop()
         document.getElementById('js-quote').innerHTML = quote
         window.setTimeout(genQuote, (quote.split(' ').length * 100) + 900)
-        console.log((quote.split(' ').length * 100) + 900)
       }
       let getQuotes = (cb) => {
+        getScram()
         const request = new XMLHttpRequest()
         request.onreadystatechange = () => {
           if (request.readyState === XMLHttpRequest.DONE) {
@@ -34,6 +34,20 @@
           }
         }
         request.open('GET', URL)
+        request.send()
+      }
+      let getScram = (cb) => {
+        const request = new XMLHttpRequest()
+        request.onreadystatechange = () => {
+          if (request.readyState === XMLHttpRequest.DONE) {
+            let data = request.responseText
+            if (data !== '"ok"') {
+              document.getElementById('js-banner').innerHTML = "<p>The bot is currently disabled and is not tweeting new news.</p>"
+            }
+            if (typeof cb === 'function') cb()
+          }
+        }
+        request.open('GET', 'https://zuzakistan.com/civilservant/scram.json')
         request.send()
       }
       window.onload = genQuote
@@ -127,7 +141,7 @@
           <a href="https://docs.google.com/forms/d/e/1FAIpQLScbwTfohsIG_R12-b8TwhOc-Jqhj4mN8z4TbYfvwGj6RXueqQ/viewform">Google Form</a>.
         </p>
       </div>
-      <div class="banner">
+      <div class="banner" id="js-banner">
       <p>
         If you like the bot, please <a href="https://www.justgiving.com/fundraising/bbcbweaking">donate to BBC Media Action</a> on our behalf.
       </p>

@@ -1,0 +1,58 @@
+# vim:ft=gnuplot 
+set terminal png enhanced size 600,400
+#set terminal svg rounded
+set datafile sep ' '
+set format x "%b"
+set format y '%.s%c'
+set key off
+set style line 1 linewidth 2
+set timefmt '%Y-%m-%dT%H:%M:%S+0000'
+set xdata time
+
+set ylabel "Followers"
+set mytics 10
+
+set label "  Johnson calls for election" at "2019-09-24T00:00:00+0000",3500 font "Arial,8"
+set label "  Essex container" at "2019-10-23T00:00:00+0000",6000 font "Arial,8"
+set label "  London Bridge" at "2019-11-29T00:00:00+0000",8000 font "Arial,8"
+set label "  Pelosi announces impeachment bid" at "2019-12-05T00:00:00+0000",13000 font "Arial,8"
+set label "  UK PGE Exit poll" at "2019-12-12T00:00:00+0000",22000 font "Arial,8"
+set label "  Duke of Edinburgh in hospital" at "2019-12-20T00:00:00+0000",24000 font "Arial,8"
+set label "  Soleimani drone strike" at "2020-01-03T00:00:00+0000",26000 font "Arial,8"
+set label "  Iran attacks US base; shoots down 737" at "2020-01-08T00:00:00+0000",30000 font "Arial,8"
+set label "  Kobe Bryant dies" at "2020-01-26T00:00:00+0000",35000 font "Arial,8"
+set label "  Iowa caucuses" at "2020-02-12T00:00:00+0000",37000 font "Arial,8"
+set label "  Buttigieg suspends bid" at "2020-03-01T00:00:00+0000",38000 font "Arial,8"
+set label "     First UK COVID-19 death" at "2020-03-05T00:00:00+0000",39000 font "Arial,8"
+set label "  Prince of Wales tests positive" at "2020-03-25T00:00:00+0000",40000 font "Arial,8"
+set label "  Johnson tests positive" at "2020-03-27T00:00:00+0000",42000 font "Arial,8"
+#set label "  Save Wives" at "2020-04-09T00:00:00+0000",43000 font "Arial,8"
+set label "  Johnson admitted to hospital" at "2020-04-05T00:00:00+0000",46000 font "Arial,8"
+#set label "  Sanders endorses Biden" at "2020-04-13T00:00:00+0000",47000 font "Arial,8"
+set label "  Johnson enters ICU" at "2020-04-07T00:00:00+0000",48000 font "Arial,8"
+#set label "  hydwoxychwOwOquine" at "2020-05-18T00:00:00+0000",48000 font "Arial,8"
+set label "  Trans rights" at "2020-07-18T00:00:00+0000",48000 font "Arial,8"
+set label "  Trump tests positive" at "2020-10-02T00:00:00+0000",51000 font "Arial,8"
+set label "  US election day" at "2020-11-03T00:00:00+0000",54000 font "Arial,8"
+set label "  Biden declared winner" at "2020-11-07T00:00:00+0000",55500 font "Arial,8"
+set label "  UK Pfizer approval" at "2020-12-02T00:00:00+0000",57000 font "Arial,8"
+set label "  Google outage" at "2020-12-14T00:00:00+0000",58000 font "Arial,8"
+
+IGNORE_BELOW=3000
+filter(x)=(x>=IGNORE_BELOW)?(x):(1/0)
+set terminal svg dynamic
+set output 'followers.svg'
+plot '/dev/stdin' using 1:(filter($2)) with steps title "BBCBweaking" #smooth sbezier
+#plot '/dev/stdin' using 1:(filter($2)) title "BBCBweaking" #smooth sbezier
+set terminal png enhanced size 1024,768
+set output 'followers-1024px.png'
+refresh
+set terminal png enhanced size 600,400
+set output 'followers-600px.png'
+refresh
+set terminal png enhanced size 1440,900
+set output 'followers.png'
+refresh
+set terminal svg size 2000,2000 dynamic
+set output 'followers-maxi.svg'
+refresh

@@ -36,7 +36,8 @@ set label "  Trump tests positive" at "2020-10-02T00:00:00+0000",51000 font "Ari
 set label "  US election day" at "2020-11-03T00:00:00+0000",54000 font "Arial,8"
 set label "  Biden declared winner" at "2020-11-07T00:00:00+0000",55500 font "Arial,8"
 set label "  UK Pfizer approval" at "2020-12-02T00:00:00+0000",57000 font "Arial,8"
-set label "  Google outage" at "2020-12-14T00:00:00+0000",58000 font "Arial,8"
+set label "  Google outage" at "2020-12-14T00:00:00+0000",58400 font "Arial,8"
+set label "  Trump Twitter ban" at "2021-01-08T00:00:00+0000",60000 font "Arial,8"
 
 IGNORE_BELOW=3000
 filter(x)=(x>=IGNORE_BELOW)?(x):(1/0)
